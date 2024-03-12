@@ -24,6 +24,41 @@ app.post('/users', async (req, res)=>{
     res.json(users);
 });
 
+app.post('/sensor', async (req, res)=>{
+    const sensor = await prisma.sensor.create({
+        data: req.body
+    }) 
+    res.json(sensor);
+});
+
+app.get('/sensor', async (req, res)=>{
+    const sensor = await prisma.sensor.findMany();
+    res.json(sensor);
+})
+
+
+app.get('/sensor2', async (req, res)=>{
+    const count = await prisma.sensor.count()
+    const sensor2 = await prisma.sensor.findUnique({
+        where:{
+            id: count
+        }
+    });
+    
+    res.json(sensor2);
+})
+
+
+app.get('/sensor3', async (req, res)=>{
+
+    const sensor2 = await prisma.sensor.findMany({
+        where:{
+            device:"burn"
+        }
+    });
+    
+    res.json(sensor2);
+})
 
 
 app.listen(PORT, () => {
