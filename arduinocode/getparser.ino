@@ -3,7 +3,7 @@
   
 const char* ssid = "";
 const char* password =  "";
-const char* serverName = "http://192.168.91.116:3001/sensor2";
+const char* serverName = "http://192.168.91.116:3001/sensor2"; //En este sector debe utilizar la URL de su Backend
   
 void setup() {
   
@@ -26,7 +26,7 @@ void loop() {
   
     HTTPClient http;
   
-    http.begin("http://192.168.91.116:3001/"); //Specify the URL
+    http.begin(serverName); 
     int httpCode = http.GET();   
     
                               //Make the request
