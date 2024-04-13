@@ -26,3 +26,15 @@ device String
 ip String
 date DateTime @default(now())
 }
+
+
+model datos {
+id Int @id @default(autoincrement())
+nombre String
+correo String
+carnet Float
+latitud Float
+longitud Float
+humedad Float
+temperatura Float
+}

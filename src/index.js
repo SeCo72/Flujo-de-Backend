@@ -4,7 +4,7 @@ require('dotenv').config();
 const prisma = new PrismaClient();
 const app = express();
 const PORT = process.env.PORT;
-app.use(express.json());
+app.use(express.json());
 
 app.get('/users', async (req, res)=>{
     try{
@@ -36,6 +36,18 @@ app.get('/sensor', async (req, res)=>{
     res.json(sensor);
 })
 
+
+app.post('/datos', async (req, res)=>{
+    const datos = await prisma.datos.create({
+        data: req.body
+    }) 
+    res.json(datos);
+});
+
+app.get('/datos', async (req, res)=>{
+    const datos = await prisma.datos.findMany();
+    res.json(datos);
+})
 
 app.get('/sensor2', async (req, res)=>{
     const count = await prisma.sensor.count()
